@@ -1,5 +1,7 @@
+import { Env } from '@tsed/core';
+
 export const environment = {
-  production: true,
+  env: Env.PROD,
   httpPort: 8070,
-  httpsPort: 8080,
+  httpsPort: 8080
 };
