@@ -1,23 +1,5 @@
 {
   "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "outDir": "./dist",
-    "module": "commonjs",
-    "types": ["node"],
-    "isolatedModules": false,
-    "suppressImplicitAnyIndexErrors": false,
-    "strictNullChecks": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "newLine": "LF",
-    "noEmit": true,
-    "lib": [
-      "es7",
-      "ESNext.AsyncIterable"
-    ],
-  },
   "exclude": ["**/*.spec.ts"],
   "include": ["**/*.ts"]
 }

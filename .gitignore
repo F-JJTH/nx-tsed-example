@@ -4,6 +4,8 @@
 /dist
 /tmp
 /out-tsc
+/apps/kizeo-connect/.db
+/apps/kizeo-connect/dist
 
 # dependencies
 /node_modules

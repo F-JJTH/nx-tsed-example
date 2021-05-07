@@ -1,12 +1,18 @@
-export const environment = {
-  production: false,
-  httpPort: 8070,
+import { Env } from '@tsed/core';
+import { join } from 'path';
+import * as fs from 'fs';
+
+const rootDir = join(__dirname, "..", "..");
+
+export const environment: Partial<TsED.Configuration> = {
+  env: Env.DEV,
+  httpPort: 8070 || process.env.HTTP_PORT,
+  httpsPort: 8080 || process.env.HTTPS_PORT,
   httpsOptions: {
-    port: 8080,
-    keyPath: "/home/cdelhamaide/projects/kizeo/nx/kizeo/apps/kizeo-connect/certificates/localhost-key.pem",
-    certPath: "/home/cdelhamaide/projects/kizeo/nx/kizeo/apps/kizeo-connect/certificates/localhost.pem",
-  },
+    key: fs.readFileSync(String(join(rootDir, "../certificates/localhost-key.pem") || process.env.CERT_KEY_PATH)),
+    cert: fs.readFileSync(String(join(rootDir, "../certificates/localhost.pem") || process.env.CERT_PATH)),
+  } as any,
   oidc: {
-    jwksPath: "/home/cdelhamaide/projects/kizeo/nx/kizeo/apps/kizeo-connect/keys/jwks.json",
+    jwksPath: join(rootDir, "../keys/jwks.json") || process.env.JWKS_PATH,
   }
 };
