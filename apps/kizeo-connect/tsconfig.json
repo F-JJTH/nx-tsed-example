@@ -4,7 +4,7 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "module": "commonjs",
-    "target": "esnext",
+    "target": "es2019",
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
