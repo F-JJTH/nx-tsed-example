@@ -1,10 +1,208 @@
 {
-  
-  
   "version": 2,
-  
-  "projects": {},
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "boiler-plate-angular",
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "boiler-plate-angular": {
+      "projectType": "application",
+      "root": "apps/boiler-plate-angular",
+      "sourceRoot": "apps/boiler-plate-angular/src",
+      "prefix": "kizeo",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/boiler-plate-angular",
+            "index": "apps/boiler-plate-angular/src/index.html",
+            "main": "apps/boiler-plate-angular/src/main.ts",
+            "polyfills": "apps/boiler-plate-angular/src/polyfills.ts",
+            "tsConfig": "apps/boiler-plate-angular/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/boiler-plate-angular/src/favicon.ico",
+              "apps/boiler-plate-angular/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "apps/boiler-plate-angular/src/theme.less",
+              "apps/boiler-plate-angular/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/boiler-plate-angular/src/environments/environment.ts",
+                  "with": "apps/boiler-plate-angular/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "boiler-plate-angular:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "boiler-plate-angular:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "boiler-plate-angular:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/boiler-plate-angular/src/**/*.ts",
+              "apps/boiler-plate-angular/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/boiler-plate-angular"
+          ],
+          "options": {
+            "jestConfig": "apps/boiler-plate-angular/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "kizeo-connect": {
+      "root": "apps/kizeo-connect",
+      "sourceRoot": "apps/kizeo-connect/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/kizeo-connect",
+            "main": "apps/kizeo-connect/src/main.ts",
+            "tsConfig": "apps/kizeo-connect/tsconfig.app.json",
+            "assets": [
+              "apps/kizeo-connect/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/kizeo-connect/src/environments/environment.ts",
+                  "with": "apps/kizeo-connect/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "kizeo-connect:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/kizeo-connect/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/kizeo-connect"
+          ],
+          "options": {
+            "jestConfig": "apps/kizeo-connect/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "auth": {
+      "projectType": "library",
+      "root": "libs/auth",
+      "sourceRoot": "libs/auth/src",
+      "prefix": "kizeo",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/auth/src/**/*.ts",
+              "libs/auth/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/auth"
+          ],
+          "options": {
+            "jestConfig": "libs/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
   }
 }
