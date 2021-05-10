@@ -60,13 +60,15 @@
     "ng-zorro-antd": "^11.4.1",
     "oidc-provider": "^7.3.1",
     "rxjs": "~6.6.3",
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "zone.js": "^0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1102.0",
     "@angular-eslint/eslint-plugin": "~4.2.0",
     "@angular-eslint/eslint-plugin-template": "~4.2.0",
     "@angular-eslint/template-parser": "~4.2.0",
+    "@angular/cli": "^11.2.12",
     "@angular/compiler-cli": "^11.2.0",
     "@angular/language-service": "^11.2.0",
     "@nrwl/angular": "^12.1.1",
