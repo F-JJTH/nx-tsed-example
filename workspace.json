@@ -84,7 +84,10 @@
         "serve": {
           "executor": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "boiler-plate-angular:build"
+            "browserTarget": "boiler-plate-angular:build",
+            "ssl": true,
+            "sslKey": "./utils/certificates/localhost-key.pem",
+            "sslCert": "./utils/certificates/localhost.pem"
           },
           "configurations": {
             "production": {

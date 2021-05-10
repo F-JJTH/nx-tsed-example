@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from '@kizeo/auth';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-welcome',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private oauthService: OAuthService
+  ) { }
 
   ngOnInit() {
+    console.log(this.oauthService.getIdentityClaims())
+    console.log(this.oauthService.scope)
   }
 
 }

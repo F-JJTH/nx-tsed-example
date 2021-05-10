@@ -1,4 +1,4 @@
-import { Configuration, GlobalProviders, Inject, InjectorService } from '@tsed/di';
+import { Configuration, Inject } from '@tsed/di';
 import { Constant, PlatformApplication } from '@tsed/common';
 import '@tsed/platform-express'; // /!\ keep this import
 import * as bodyParser from 'body-parser';
@@ -20,7 +20,6 @@ import { Env } from '@tsed/core';
 
 @Configuration({
   ...config,
-  ...environment,
   acceptMimes: ['application/json'],
   adapters: {
     lowdbDir: join(rootDir, '.db'),
@@ -40,7 +39,7 @@ import { Env } from '@tsed/core';
     }
   ],
   views: {
-    root: `${rootDir}/assets/views`,
+    root: `${__dirname}/assets/views`,
     viewEngine: 'ejs'
   },
   exclude: [
@@ -57,9 +56,6 @@ export class Server {
   @Configuration()
   settings: Configuration;
 
-  @Inject()
-  injector: InjectorService;
-
   $beforeRoutesInit(): void {
     this.app
       .use(cors())
@@ -72,8 +68,5 @@ export class Server {
     if (this.env === Env.PROD) {
       this.app.use(OidcSecureMiddleware); // ensure the https protocol
     }
-  }
-  $onReady(): void {
-
   }
 }

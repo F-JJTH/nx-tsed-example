@@ -14,6 +14,7 @@ import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 import { AuthModule } from '@kizeo/auth';
 import { authCodeFlowConfig } from './oauth.config';
 
@@ -31,6 +32,7 @@ registerLocaleData(fr);
     NzLayoutModule,
     NzMenuModule,
     NzInputModule,
+    NzButtonModule,
     AuthModule.forRoot(authCodeFlowConfig),
   ],
   providers: [{ provide: NZ_I18N, useValue: fr_FR }],

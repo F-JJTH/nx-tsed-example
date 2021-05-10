@@ -36,8 +36,8 @@ export class ProfileService {
 
         this.oauthService.events.subscribe(data => {
             if (data.type === 'token_received') {
-                this.oauthService.loadUserProfile().then(async () => {
-                    this.userProfile = await this.oauthService.loadUserProfile();
+                this.oauthService.loadUserProfile().then(userInfo => {
+                    this.userProfile = userInfo
                     this.claims = this.oauthService.getIdentityClaims();
 
                     //this.appInsightsService.setAuthenticatedUserContext(this.claims.sub);
@@ -46,7 +46,7 @@ export class ProfileService {
                         this.initCallback();
                     }
 
-                    console.debug('state', this.oauthService.state);
+                    console.log('token received! redirect user to previous requested page', this.oauthService.state);
                     this.router.navigateByUrl(this.oauthService.state);
                 });
             }

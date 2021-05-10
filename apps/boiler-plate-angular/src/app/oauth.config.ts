@@ -15,7 +15,7 @@ import { AuthConfig } from 'angular-oauth2-oidc';
     // is a sign that the auth server is not configured with SPAs in mind
     // and it might not enforce further best practices vital for security
     // such applications.
-    // dummyClientSecret: 'secret',
+    //dummyClientSecret: 'client_secret',
 
     responseType: 'code',
 

@@ -12,6 +12,7 @@ export const config: Partial<TsED.Configuration> = {
   rootDir,
   logger: loggerConfig,
   mongoose: mongooseConfig,
+  ...environment,
   oidc: {
     ...environment.oidc || {},
     ...oidcConfig,
